@@ -29,5 +29,9 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "heroku-postbuild": "yarn build"
   }
 }
