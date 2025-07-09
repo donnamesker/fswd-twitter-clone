@@ -2,6 +2,7 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
+// foreman start -f Procfile.dev
 
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
@@ -11,4 +12,4 @@ import "@fortawesome/fontawesome-free/js/all"
 
 Rails.start()
 ActiveStorage.start()
-// foreman start -f Procfile.dev
+
