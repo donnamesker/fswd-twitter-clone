@@ -2,7 +2,7 @@
   "name": "full-stack-twitter-clone",
   "private": true,
   "engines": {
-    "node": ">=18"
+    "node": "18.x"
   },
   "dependencies": {
     "@babel/preset-react": "^7.16.7",
