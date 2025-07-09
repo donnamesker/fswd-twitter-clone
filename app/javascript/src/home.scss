@@ -1,0 +1,38 @@
+.fa-twitter {
+  color: #00aced;
+  font-size: 24px;
+}
+
+.main {
+  margin-top: 50px;
+}
+
+.front-card {
+  margin-top: 70px;
+}
+
+#homeback {
+  background-image: url('../../assets/images/background_1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+  position: fixed;
+}
+
+.welcome, .welcome a {
+  color: #fff;
+}
+
+#welcome-text h1 {
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+#welcome-text p {
+  font-size: 20px;
+}
+
+#twit-account {
+  text-decoration: underline;
+}

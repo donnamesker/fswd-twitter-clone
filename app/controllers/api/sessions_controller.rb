@@ -10,25 +10,28 @@ module Api
           httponly: true
         }
 
-        render 'api/sessions/create'
+        render json: {
+          success: true,
+          username: @user.username
+        }
       else
         render json: {
-          success: false
-        }
+          success: false,
+          error: 'Invalid username or password'
+        }, status: :unauthorized
       end
     end
 
     def authenticated
-      token = cookies.signed[:twitter_session_token]
-      session = Session.find_by(token: token)
-
-      if session
-        @user = session.user
-        render 'api/sessions/authenticated'
+      if current_user
+        render json: {
+          authenticated: true,
+          username: current_user.username
+        }
       else
         render json: {
           authenticated: false
-        }
+        }, status: :unauthorized
       end
     end
 
@@ -40,6 +43,10 @@ module Api
         render json: {
           success: true
         }
+      else
+        render json: {
+          success: false
+        }, status: :unauthorized
       end
     end
   end

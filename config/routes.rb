@@ -1,23 +1,27 @@
 Rails.application.routes.draw do
+  # Root path for React single-page app
   root 'static_pages#home'
 
-  namespace :api do
-    # USERS
-    post '/users'                  => 'users#create'
+  namespace :api, defaults: { format: :json } do
+    # Users
+    resources :users, only: [:create]
 
-    # SESSIONS
-    post '/sessions'               => 'sessions#create'
-    get  '/authenticated'          => 'sessions#authenticated'
-    delete '/sessions'             => 'sessions#destroy'
+    # Sessions
+    resource :sessions, only: [:create, :destroy]
+    get '/authenticated', to: 'sessions#authenticated'
 
-    # TWEETS
-    post '/tweets'                 => 'tweets#create'
-    get  '/tweets'                 => 'tweets#index'
-    delete '/tweets/:id'           => 'tweets#destroy'
-    get  '/users/:username/tweets' => 'tweets#index_by_user'
-    get  '/tweets/search/:keyword' => 'tweets#search'
+    # Tweets
+    resources :tweets, only: [:create, :index, :destroy]
+    get '/users/:username/tweets', to: 'tweets#index_by_user'
+    get '/tweets/search/:keyword', to: 'tweets#search'
   end
 
-  get '*path' => 'static_pages#home'
-  # if you are using active storage to upload and store images, comment the above line
+  # Active Storage routes for direct uploads and blobs
+  # This mounts ActiveStorage’s built-in routes at /rails/active_storage
+  # Needed for file/image uploads via ActiveStorage
+  # Make sure you have 'include Rails.application.routes.url_helpers' in your uploader or models
+  mount ActiveStorage::Engine => '/rails/active_storage'
+
+  # React routes fallback (client-side routes)
+  get '*path', to: 'static_pages#home', constraints: ->(req) { !req.xhr? && req.format.html? }
 end
