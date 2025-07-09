@@ -32,8 +32,7 @@
     "webpack-dev-server": "^3"
   },
   "scripts": {
-    "build": "webpack --mode production",
-    "heroku-postbuild": "yarn build"
+    "heroku-postbuild": "yarn webpack"
   },
   "resolutions": {
     "minimatch": "^5.1.6"
