@@ -32,7 +32,7 @@
     "webpack-dev-server": "^3"
   },
   "scripts": {
-    "heroku-postbuild": "yarn webpack"
+    "heroku-postbuild": "RAILS_ENV=production bundle exec rails webpacker:compile"
   },
   "resolutions": {
     "minimatch": "^5.1.6"
