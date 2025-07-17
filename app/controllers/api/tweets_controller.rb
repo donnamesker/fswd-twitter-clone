@@ -17,11 +17,7 @@ module Api
       @tweet = user.tweets.new(tweet_params)
 
       if @tweet.save
-        begin
-          TweetMailer.notify(@tweet).deliver!
-        rescue => e
-          Rails.logger.error "Email delivery failed: #{e.message}"
-        end
+        # TweetMailer.notify(@tweet).deliver!
         # render 'api/tweets/create'
         render json: {
           success: true,
