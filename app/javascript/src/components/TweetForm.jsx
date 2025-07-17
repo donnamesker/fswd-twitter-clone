@@ -8,6 +8,7 @@ const TweetForm = ({ currentUser, onTweetPosted }) => {
 
   const handlePost = () => {
     postTweet(message, image, result => {
+      console.log('Tweet post result:', result);
       if (result.success) {
         setMessage('');
         setImage(null);

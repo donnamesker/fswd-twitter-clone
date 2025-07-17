@@ -103,4 +103,7 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # Set default host for URL helpers in production
+  Rails.application.routes.default_url_options[:host] = 'donna-fswd-twitter-clone-36d6a12deaff.herokuapp.com'
 end

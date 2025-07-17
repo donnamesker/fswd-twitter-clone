@@ -2,11 +2,6 @@ module Api
   class TweetsController < ApplicationController
     include Rails.application.routes.url_helpers
 
-    # Optional - to set default_url_options
-    def default_url_options
-      { host: 'localhost', port: 3000 }
-    end
-
     def index
       @tweets = Tweet.all.order(created_at: :desc)
       render 'api/tweets/index'
@@ -15,12 +10,29 @@ module Api
     def create
       token = cookies.signed[:twitter_session_token]
       session = Session.find_by(token: token)
+
+      return render json: { success: false, error: 'Unauthorized' }, status: :unauthorized unless session
+
       user = session.user
       @tweet = user.tweets.new(tweet_params)
 
       if @tweet.save
         TweetMailer.notify(@tweet).deliver!
-        render 'api/tweets/create'
+        # render 'api/tweets/create'
+        render json: {
+          success: true,
+          tweet: {
+            id: @tweet.id,
+            message: @tweet.message,
+            image_url: @tweet.image.attached? ? url_for(@tweet.image) : nil,
+            created_at: @tweet.created_at,
+            user: {
+              username: user.username
+            }
+          }
+        }, status: :created
+      else
+        render json: { success: false, errors: @tweet.errors.full_messages }, status: :unprocessable_entity
       end
     end
 
