@@ -40,19 +40,13 @@ const Feed = () => {
       setTweetCount(usertweets ? usertweets.length : 0);
     });
   };
-  const handlePostTweet = () => {
-    postTweet(tweetText, image, (result) => {
-      if (result.success) {
-        setTweetText('');
-        setImage(null);
+
+  const onTweetPosted = () => {
         fetchAllTweets();
         fetchUserTweets(currentUser);
-      }
-    });
   };
 
   const handleUserClick = (currentUser) => {
-    console.log(currentUser);
     getUserTweets(currentUser, usertweets => {
       setTweets(usertweets || []);
       setTweetCount(usertweets ? usertweets.length : 0);
@@ -139,7 +133,7 @@ const Feed = () => {
                   <div className="p-2 post-tweet-box">
                       <TweetForm
                         currentUser={currentUser}
-                        onTweetPosted={fetchAllTweets}
+                        onTweetPosted={onTweetPosted}
                       />
                       <TweetFeed 
                         currentUser={currentUser}

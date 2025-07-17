@@ -12,8 +12,7 @@ const TweetForm = ({ currentUser, onTweetPosted }) => {
         setMessage('');
         setImage(null);
         setCharCount(0);
-        fetchAllTweets();
-        fetchUserTweets(currentUser);
+        if (onTweetPosted) onTweetPosted();
       }
     });
   };
