@@ -84,13 +84,13 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.smtp_settings = {
-    address:              ENV['SMTP_ADDRESS'],
-    port:                 ENV['SMTP_PORT'],
-    domain:               ENV['SMTP_DOMAIN'],
-    user_name:            ENV['SMTP_USER_NAME'],
-    password:             ENV['SMTP_PASSWORD'],
-    authentication:       ENV['SMTP_AUTHENTICATION'].to_sym,
-    enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'] == 'true'
+    address:              ENV.fetch('SMTP_ADDRESS', 'smtp.mailgun.org'),
+    port:                 ENV.fetch('SMTP_PORT', 587),
+    domain:               ENV.fetch('SMTP_DOMAIN', 'sandboxec7754ec8a064f5ab461fe78f7104bbd.mailgun.org'),
+    user_name:            ENV.fetch('SMTP_USER_NAME', nil),
+    password:             ENV.fetch('SMTP_PASSWORD', nil),
+    authentication:       ENV.fetch('SMTP_AUTHENTICATION', 'plain').to_sym,
+    enable_starttls_auto: ENV.fetch('SMTP_ENABLE_STARTTLS_AUTO', 'true') == 'true'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
