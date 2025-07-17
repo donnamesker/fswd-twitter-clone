@@ -46,7 +46,7 @@ const Feed = () => {
         setTweetText('');
         setImage(null);
         fetchAllTweets();
-        fetchUserTweets(res.username);
+        fetchUserTweets(currentUser);
       }
     });
   };
@@ -138,13 +138,7 @@ const Feed = () => {
                 <div className="col-sm-8 feed-box">
                   <div className="p-2 post-tweet-box">
                       <TweetForm
-                        tweetText={tweetText}
-                        setTweetText={setTweetText}
-                        image={image}
-                        setImage={setImage}
-                        charCount={charCount}
-                        setCharCount={setCharCount}
-                        onSubmit={handlePostTweet}
+                        currentUser={currentUser}
                         onTweetPosted={fetchAllTweets}
                       />
                       <TweetFeed 

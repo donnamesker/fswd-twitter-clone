@@ -12,7 +12,7 @@ const TweetForm = ({ currentUser, onTweetPosted }) => {
         setMessage('');
         setImage(null);
         setCharCount(0);
-        if (onTweetPosted) onTweetPosted(); // Refresh parent feed if callback passed
+        if (onTweetPosted) onTweetPosted();
       }
     });
   };
