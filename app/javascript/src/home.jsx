@@ -1,15 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom'
+import App from './components/App'
 
+import '../packs/application.scss';
 import './home.scss';
-
-const Home = props => (
-  <h1>Home page react is working</h1>
-)
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Home />,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
+    <App />,
+    document.body.appendChild(document.createElement('div'))
+  );
+});

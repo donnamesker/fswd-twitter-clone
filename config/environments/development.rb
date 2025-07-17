@@ -32,7 +32,19 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # config.active_storage.service = :local
+  config.active_storage.service = :amazon
+
+  config.action_mailer.smtp_settings = {
+    address: ENV['MAILGUN_SMTP_SERVER'],
+    port: ENV['MAILGUN_SMTP_PORT'],
+    domain: ENV['MAILGUN_DOMAIN'],
+    user_name: ENV['MAILGUN_SMTP_LOGIN'],
+    password: ENV['MAILGUN_SMTP_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true,
+  }
+
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

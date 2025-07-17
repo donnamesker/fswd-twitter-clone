@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.11'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1'
+gem 'bcrypt', '~> 3.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -61,6 +61,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 7'
   gem 'rubocop', '~> 1.36'
   gem 'rubocop-rspec', '2.12'
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :development do
@@ -70,8 +72,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '< 3.0'
 
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.4'
 end
 
 group :production do

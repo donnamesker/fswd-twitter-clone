@@ -1,5 +1,12 @@
 module Api
   class TweetsController < ApplicationController
+    include Rails.application.routes.url_helpers
+
+    # Optional - to set default_url_options
+    def default_url_options
+      { host: 'localhost', port: 3000 }
+    end
+
     def index
       @tweets = Tweet.all.order(created_at: :desc)
       render 'api/tweets/index'
